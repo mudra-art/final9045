@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EasyTrip Travel | Travel Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f4f6f9;
+            color: #333;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: linear-gradient(90deg, #0066ff, #00c6ff);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") no-repeat center;
+            background-size: cover;
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #0066ff;
+        }
+
+        /* ===== FORM ===== */
+        form input, form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        form textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        button {
+            margin-top: 15px;
+            background: #0066ff;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #004ecc;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #222;
+            color: #ccc;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+        footer span {
+            color: #00c6ff;
+        }
+
+        /* ===== USER GREETING ===== */
+        .welcome {
+            background: #e9f2ff;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>✈️ EasyTrip Travel</h1>
+    <nav>
+        {% if user %}
+            <span>Welcome, {{ user }}</span>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        {% endif %}
+    </nav>
+</header>
+
+<section class="hero">
+    <div>
+        <h2>Explore the World with Confidence</h2>
+        <p>Book flights, plan trips, and travel stress-free</p>
+    </div>
+</section>
+
+<div class="container">
+
+    {% if user %}
+    <div class="welcome">
+        👋 Hello <b>{{ user }}</b>, start planning your next journey today!
+    </div>
+    {% endif %}
+
+    <!-- ===== BOOKING CARD ===== -->
+    <div class="card">
+        <h3>📍 Book Your Trip</h3>
+        <form action="/book" method="post">
+            <input type="text" name="destination" placeholder="Destination (e.g. Goa, Paris)" required>
+            <input type="date" name="travel_date" required>
+            <input type="number" name="persons" placeholder="Number of Travelers" required>
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+
+    <!-- ===== CONTACT CARD ===== -->
+    <div class="card">
+        <h3>📞 Contact Us</h3>
+        <form action="/contact" method="post">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 <span>EasyTrip Travel</span> | All Rights Reserved
+</footer>
+
+</body>
+</html>
